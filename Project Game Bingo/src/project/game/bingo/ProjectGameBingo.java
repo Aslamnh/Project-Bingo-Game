@@ -7,6 +7,7 @@ package project.game.bingo;
 /**
  *
  * @author aslam
+ * zienard
  */
 public class ProjectGameBingo {
 
