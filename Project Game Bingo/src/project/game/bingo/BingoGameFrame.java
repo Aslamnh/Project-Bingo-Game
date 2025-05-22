@@ -39,9 +39,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        Integer[] tile1 = generateRandomNumbers();
-        Integer[] tile2 = generateRandomNumbers();
+        
 
         bingoBoard1 = new javax.swing.JPanel();
         b1tile1 = new javax.swing.JButton();
@@ -70,31 +68,31 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b1tile24 = new javax.swing.JButton();
         b1tile25 = new javax.swing.JButton();
         bingoBoard2 = new javax.swing.JPanel();
-        b2tile2 = new javax.swing.JLabel(tile2[0].toString());
-        b2tile3 = new javax.swing.JLabel(tile2[1].toString());
-        b2tile4 = new javax.swing.JLabel(tile2[2].toString());
-        b2tile5 = new javax.swing.JLabel(tile2[3].toString());
-        b2tile1 = new javax.swing.JLabel(tile2[4].toString());
-        b2tile6 = new javax.swing.JLabel(tile2[5].toString());
-        b2tile7 = new javax.swing.JLabel(tile2[6].toString());
-        b2tile8 = new javax.swing.JLabel(tile2[7].toString());
-        b2tile9 = new javax.swing.JLabel(tile2[8].toString());
-        b2tile10 = new javax.swing.JLabel(tile2[9].toString());
-        b2tile11 = new javax.swing.JLabel(tile2[10].toString());
-        b2tile12 = new javax.swing.JLabel(tile2[11].toString());
-        b2tile13 = new javax.swing.JLabel(tile2[12].toString());
-        b2tile14 = new javax.swing.JLabel(tile2[13].toString());
-        b2tile15 = new javax.swing.JLabel(tile2[14].toString());
-        b2tile16 = new javax.swing.JLabel(tile2[15].toString());
-        b2tile17 = new javax.swing.JLabel(tile2[16].toString());
-        b2tile18 = new javax.swing.JLabel(tile2[17].toString());
-        b2tile19 = new javax.swing.JLabel(tile2[18].toString());
-        b2tile20 = new javax.swing.JLabel(tile2[19].toString());
-        b2tile21 = new javax.swing.JLabel(tile2[20].toString());
-        b2tile22 = new javax.swing.JLabel(tile2[21].toString());
-        b2tile23 = new javax.swing.JLabel(tile2[22].toString());
-        b2tile24 = new javax.swing.JLabel(tile2[23].toString());
-        b2tile25 = new javax.swing.JLabel(tile2[24].toString());
+        b2tile2 = new javax.swing.JLabel();
+        b2tile3 = new javax.swing.JLabel();
+        b2tile4 = new javax.swing.JLabel();
+        b2tile5 = new javax.swing.JLabel();
+        b2tile1 = new javax.swing.JLabel();
+        b2tile6 = new javax.swing.JLabel();
+        b2tile7 = new javax.swing.JLabel();
+        b2tile8 = new javax.swing.JLabel();
+        b2tile9 = new javax.swing.JLabel();
+        b2tile10 = new javax.swing.JLabel();
+        b2tile11 = new javax.swing.JLabel();
+        b2tile12 = new javax.swing.JLabel();
+        b2tile13 = new javax.swing.JLabel();
+        b2tile14 = new javax.swing.JLabel();
+        b2tile15 = new javax.swing.JLabel();
+        b2tile16 = new javax.swing.JLabel();
+        b2tile17 = new javax.swing.JLabel();
+        b2tile18 = new javax.swing.JLabel();
+        b2tile19 = new javax.swing.JLabel();
+        b2tile20 = new javax.swing.JLabel();
+        b2tile21 = new javax.swing.JLabel();
+        b2tile22 = new javax.swing.JLabel();
+        b2tile23 = new javax.swing.JLabel();
+        b2tile24 = new javax.swing.JLabel();
+        b2tile25 = new javax.swing.JLabel();
         playerInfo1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -633,6 +631,32 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_b1tile25ActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        Integer[] tile2 = generateRandomNumbers();
+        b2tile2.setText(tile2[0].toString());
+        b2tile3.setText(tile2[1].toString());
+        b2tile4.setText(tile2[2].toString());
+        b2tile5.setText(tile2[3].toString());
+        b2tile1.setText(tile2[4].toString());
+        b2tile6.setText(tile2[5].toString());
+        b2tile7.setText(tile2[6].toString());
+        b2tile8.setText(tile2[7].toString());
+        b2tile9.setText(tile2[8].toString());
+        b2tile10.setText(tile2[9].toString());
+        b2tile11.setText(tile2[10].toString());
+        b2tile12.setText(tile2[11].toString());
+        b2tile13.setText(tile2[12].toString());
+        b2tile14.setText(tile2[13].toString());
+        b2tile15.setText(tile2[14].toString());
+        b2tile16.setText(tile2[15].toString());
+        b2tile17.setText(tile2[16].toString());
+        b2tile18.setText(tile2[17].toString());
+        b2tile19.setText(tile2[18].toString());
+        b2tile20.setText(tile2[19].toString());
+        b2tile21.setText(tile2[20].toString());
+        b2tile22.setText(tile2[21].toString());
+        b2tile23.setText(tile2[22].toString());
+        b2tile24.setText(tile2[23].toString());
+        b2tile25.setText(tile2[24].toString());
         // TODO add your handling code here:
     }//GEN-LAST:event_btnStartActionPerformed
 
