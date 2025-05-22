@@ -4,6 +4,10 @@
  */
 package project.game.bingo;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author aslam
@@ -17,6 +21,16 @@ public class BingoGameFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    private Integer[] generateRandomNumbers() {
+        Integer[] numbers = new Integer[25];
+        for (int i = 1; i <= 25; i++) {
+            numbers[i - 1] = i;
+        }
+        List<Integer> numberList = Arrays.asList(numbers);
+        Collections.shuffle(numberList);
+        return numberList.toArray(new Integer[0]);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,6 +39,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        Integer[] tile1 = generateRandomNumbers();
+        Integer[] tile2 = generateRandomNumbers();
 
         bingoBoard1 = new javax.swing.JPanel();
         b1tile1 = new javax.swing.JButton();
@@ -43,8 +60,8 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b1tile14 = new javax.swing.JButton();
         b1tile15 = new javax.swing.JButton();
         b1tile16 = new javax.swing.JButton();
-        b1tile17 = new javax.swing.JButton();
         b1tile18 = new javax.swing.JButton();
+        b1tile17 = new javax.swing.JButton();
         b1tile19 = new javax.swing.JButton();
         b1tile20 = new javax.swing.JButton();
         b1tile21 = new javax.swing.JButton();
@@ -53,31 +70,31 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b1tile24 = new javax.swing.JButton();
         b1tile25 = new javax.swing.JButton();
         bingoBoard2 = new javax.swing.JPanel();
-        b2tile1 = new javax.swing.JLabel();
-        b2tile2 = new javax.swing.JLabel();
-        b2tile3 = new javax.swing.JLabel();
-        b2tile4 = new javax.swing.JLabel();
-        b2tile5 = new javax.swing.JLabel();
-        b2tile6 = new javax.swing.JLabel();
-        b2tile7 = new javax.swing.JLabel();
-        b2tile8 = new javax.swing.JLabel();
-        b2tile9 = new javax.swing.JLabel();
-        b2tile10 = new javax.swing.JLabel();
-        b2tile11 = new javax.swing.JLabel();
-        b2tile12 = new javax.swing.JLabel();
-        b2tile13 = new javax.swing.JLabel();
-        b2tile14 = new javax.swing.JLabel();
-        b2tile15 = new javax.swing.JLabel();
-        b2tile16 = new javax.swing.JLabel();
-        b2tile17 = new javax.swing.JLabel();
-        b2tile18 = new javax.swing.JLabel();
-        b2tile19 = new javax.swing.JLabel();
-        b2tile20 = new javax.swing.JLabel();
-        b2tile21 = new javax.swing.JLabel();
-        b2tile22 = new javax.swing.JLabel();
-        b2tile23 = new javax.swing.JLabel();
-        b2tile24 = new javax.swing.JLabel();
-        b2tile25 = new javax.swing.JLabel();
+        b2tile2 = new javax.swing.JLabel(tile2[0].toString());
+        b2tile3 = new javax.swing.JLabel(tile2[1].toString());
+        b2tile4 = new javax.swing.JLabel(tile2[2].toString());
+        b2tile5 = new javax.swing.JLabel(tile2[3].toString());
+        b2tile1 = new javax.swing.JLabel(tile2[4].toString());
+        b2tile6 = new javax.swing.JLabel(tile2[5].toString());
+        b2tile7 = new javax.swing.JLabel(tile2[6].toString());
+        b2tile8 = new javax.swing.JLabel(tile2[7].toString());
+        b2tile9 = new javax.swing.JLabel(tile2[8].toString());
+        b2tile10 = new javax.swing.JLabel(tile2[9].toString());
+        b2tile11 = new javax.swing.JLabel(tile2[10].toString());
+        b2tile12 = new javax.swing.JLabel(tile2[11].toString());
+        b2tile13 = new javax.swing.JLabel(tile2[12].toString());
+        b2tile14 = new javax.swing.JLabel(tile2[13].toString());
+        b2tile15 = new javax.swing.JLabel(tile2[14].toString());
+        b2tile16 = new javax.swing.JLabel(tile2[15].toString());
+        b2tile17 = new javax.swing.JLabel(tile2[16].toString());
+        b2tile18 = new javax.swing.JLabel(tile2[17].toString());
+        b2tile19 = new javax.swing.JLabel(tile2[18].toString());
+        b2tile20 = new javax.swing.JLabel(tile2[19].toString());
+        b2tile21 = new javax.swing.JLabel(tile2[20].toString());
+        b2tile22 = new javax.swing.JLabel(tile2[21].toString());
+        b2tile23 = new javax.swing.JLabel(tile2[22].toString());
+        b2tile24 = new javax.swing.JLabel(tile2[23].toString());
+        b2tile25 = new javax.swing.JLabel(tile2[24].toString());
         playerInfo1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -96,9 +113,33 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
         bingoBoard1.setToolTipText("");
         bingoBoard1.setLayout(new java.awt.GridLayout(5, 5));
+
+        b1tile1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile1ActionPerformed(evt);
+            }
+        });
         bingoBoard1.add(b1tile1);
+
+        b1tile2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile2ActionPerformed(evt);
+            }
+        });
         bingoBoard1.add(b1tile2);
+
+        b1tile3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile3ActionPerformed(evt);
+            }
+        });
         bingoBoard1.add(b1tile3);
+
+        b1tile4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile4ActionPerformed(evt);
+            }
+        });
         bingoBoard1.add(b1tile4);
 
         b1tile5.addActionListener(new java.awt.event.ActionListener() {
@@ -598,6 +639,23 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void btnNextTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextTurnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNextTurnActionPerformed
+
+    private void b1tile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile1ActionPerformed
+        // TODO add your handling code here:
+        b1tile1.setText("X");
+    }//GEN-LAST:event_b1tile1ActionPerformed
+
+    private void b1tile2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b1tile2ActionPerformed
+
+    private void b1tile3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b1tile3ActionPerformed
+
+    private void b1tile4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b1tile4ActionPerformed
 
     /**
      * @param args the command line arguments
