@@ -4,12 +4,18 @@
  */
 package project.game.bingo;
 
+<<<<<<< HEAD
 import java.util.Random;
+=======
+>>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
 /**
  *
  * @author aslam
@@ -137,6 +143,16 @@ public class BingoGameFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    private Integer[] generateRandomNumbers() {
+        Integer[] numbers = new Integer[25];
+        for (int i = 1; i <= 25; i++) {
+            numbers[i - 1] = i;
+        }
+        List<Integer> numberList = Arrays.asList(numbers);
+        Collections.shuffle(numberList);
+        return numberList.toArray(new Integer[0]);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,10 +161,12 @@ public class BingoGameFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         bingoBoard1 = new javax.swing.JPanel();
+<<<<<<< HEAD
         b1tile1 = new javax.swing.JLabel();
         b1tile2 = new javax.swing.JLabel();
         b1tile3 = new javax.swing.JLabel();
@@ -174,12 +192,40 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b1tile23 = new javax.swing.JLabel();
         b1tile24 = new javax.swing.JLabel();
         b1tile25 = new javax.swing.JLabel();
+=======
+        b1tile1 = new javax.swing.JButton();
+        b1tile2 = new javax.swing.JButton();
+        b1tile3 = new javax.swing.JButton();
+        b1tile4 = new javax.swing.JButton();
+        b1tile5 = new javax.swing.JButton();
+        b1tile6 = new javax.swing.JButton();
+        b1tile7 = new javax.swing.JButton();
+        b1tile8 = new javax.swing.JButton();
+        b1tile9 = new javax.swing.JButton();
+        b1tile10 = new javax.swing.JButton();
+        b1tile11 = new javax.swing.JButton();
+        b1tile13 = new javax.swing.JButton();
+        b1tile12 = new javax.swing.JButton();
+        b1tile14 = new javax.swing.JButton();
+        b1tile15 = new javax.swing.JButton();
+        b1tile16 = new javax.swing.JButton();
+        b1tile18 = new javax.swing.JButton();
+        b1tile17 = new javax.swing.JButton();
+        b1tile19 = new javax.swing.JButton();
+        b1tile20 = new javax.swing.JButton();
+        b1tile21 = new javax.swing.JButton();
+        b1tile22 = new javax.swing.JButton();
+        b1tile23 = new javax.swing.JButton();
+        b1tile24 = new javax.swing.JButton();
+        b1tile25 = new javax.swing.JButton();
+>>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
         bingoBoard2 = new javax.swing.JPanel();
         b2tile1 = new javax.swing.JLabel();
         b2tile2 = new javax.swing.JLabel();
         b2tile3 = new javax.swing.JLabel();
         b2tile4 = new javax.swing.JLabel();
         b2tile5 = new javax.swing.JLabel();
+        b2tile1 = new javax.swing.JLabel();
         b2tile6 = new javax.swing.JLabel();
         b2tile7 = new javax.swing.JLabel();
         b2tile8 = new javax.swing.JLabel();
@@ -231,6 +277,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         bingoBoard1.setToolTipText("");
         bingoBoard1.setLayout(new java.awt.GridLayout(5, 5));
 
+<<<<<<< HEAD
         b1tile1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b1tile1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
         bingoBoard1.add(b1tile1);
@@ -245,6 +292,34 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
         b1tile4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b1tile4.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
+=======
+        b1tile1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile1ActionPerformed(evt);
+            }
+        });
+        bingoBoard1.add(b1tile1);
+
+        b1tile2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile2ActionPerformed(evt);
+            }
+        });
+        bingoBoard1.add(b1tile2);
+
+        b1tile3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile3ActionPerformed(evt);
+            }
+        });
+        bingoBoard1.add(b1tile3);
+
+        b1tile4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1tile4ActionPerformed(evt);
+            }
+        });
+>>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
         bingoBoard1.add(b1tile4);
 
         b1tile5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -649,7 +724,37 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+<<<<<<< HEAD
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
+=======
+        Integer[] tile2 = generateRandomNumbers();
+        b2tile2.setText(tile2[0].toString());
+        b2tile3.setText(tile2[1].toString());
+        b2tile4.setText(tile2[2].toString());
+        b2tile5.setText(tile2[3].toString());
+        b2tile1.setText(tile2[4].toString());
+        b2tile6.setText(tile2[5].toString());
+        b2tile7.setText(tile2[6].toString());
+        b2tile8.setText(tile2[7].toString());
+        b2tile9.setText(tile2[8].toString());
+        b2tile10.setText(tile2[9].toString());
+        b2tile11.setText(tile2[10].toString());
+        b2tile12.setText(tile2[11].toString());
+        b2tile13.setText(tile2[12].toString());
+        b2tile14.setText(tile2[13].toString());
+        b2tile15.setText(tile2[14].toString());
+        b2tile16.setText(tile2[15].toString());
+        b2tile17.setText(tile2[16].toString());
+        b2tile18.setText(tile2[17].toString());
+        b2tile19.setText(tile2[18].toString());
+        b2tile20.setText(tile2[19].toString());
+        b2tile21.setText(tile2[20].toString());
+        b2tile22.setText(tile2[21].toString());
+        b2tile23.setText(tile2[22].toString());
+        b2tile24.setText(tile2[23].toString());
+        b2tile25.setText(tile2[24].toString());
+        // TODO add your handling code here:
+>>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -659,6 +764,23 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void btnGenerateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateNumberActionPerformed
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
     }//GEN-LAST:event_btnGenerateNumberActionPerformed
+
+    private void b1tile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile1ActionPerformed
+        // TODO add your handling code here:
+        b1tile1.setText("X");
+    }//GEN-LAST:event_b1tile1ActionPerformed
+
+    private void b1tile2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b1tile2ActionPerformed
+
+    private void b1tile3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b1tile3ActionPerformed
+
+    private void b1tile4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b1tile4ActionPerformed
 
     /**
      * @param args the command line arguments
