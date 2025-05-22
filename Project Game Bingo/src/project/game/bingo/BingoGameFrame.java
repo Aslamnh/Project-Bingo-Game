@@ -4,18 +4,13 @@
  */
 package project.game.bingo;
 
-<<<<<<< HEAD
+
 import java.util.Random;
-=======
->>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
 /**
  *
  * @author aslam
@@ -166,7 +161,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         bingoBoard1 = new javax.swing.JPanel();
-<<<<<<< HEAD
         b1tile1 = new javax.swing.JLabel();
         b1tile2 = new javax.swing.JLabel();
         b1tile3 = new javax.swing.JLabel();
@@ -192,33 +186,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b1tile23 = new javax.swing.JLabel();
         b1tile24 = new javax.swing.JLabel();
         b1tile25 = new javax.swing.JLabel();
-=======
-        b1tile1 = new javax.swing.JButton();
-        b1tile2 = new javax.swing.JButton();
-        b1tile3 = new javax.swing.JButton();
-        b1tile4 = new javax.swing.JButton();
-        b1tile5 = new javax.swing.JButton();
-        b1tile6 = new javax.swing.JButton();
-        b1tile7 = new javax.swing.JButton();
-        b1tile8 = new javax.swing.JButton();
-        b1tile9 = new javax.swing.JButton();
-        b1tile10 = new javax.swing.JButton();
-        b1tile11 = new javax.swing.JButton();
-        b1tile13 = new javax.swing.JButton();
-        b1tile12 = new javax.swing.JButton();
-        b1tile14 = new javax.swing.JButton();
-        b1tile15 = new javax.swing.JButton();
-        b1tile16 = new javax.swing.JButton();
-        b1tile18 = new javax.swing.JButton();
-        b1tile17 = new javax.swing.JButton();
-        b1tile19 = new javax.swing.JButton();
-        b1tile20 = new javax.swing.JButton();
-        b1tile21 = new javax.swing.JButton();
-        b1tile22 = new javax.swing.JButton();
-        b1tile23 = new javax.swing.JButton();
-        b1tile24 = new javax.swing.JButton();
-        b1tile25 = new javax.swing.JButton();
->>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
         bingoBoard2 = new javax.swing.JPanel();
         b2tile1 = new javax.swing.JLabel();
         b2tile2 = new javax.swing.JLabel();
@@ -277,7 +244,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         bingoBoard1.setToolTipText("");
         bingoBoard1.setLayout(new java.awt.GridLayout(5, 5));
 
-<<<<<<< HEAD
+
         b1tile1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b1tile1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
         bingoBoard1.add(b1tile1);
@@ -292,34 +259,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
         b1tile4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b1tile4.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
-=======
-        b1tile1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b1tile1ActionPerformed(evt);
-            }
-        });
-        bingoBoard1.add(b1tile1);
 
-        b1tile2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b1tile2ActionPerformed(evt);
-            }
-        });
-        bingoBoard1.add(b1tile2);
+        
 
-        b1tile3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b1tile3ActionPerformed(evt);
-            }
-        });
-        bingoBoard1.add(b1tile3);
-
-        b1tile4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b1tile4ActionPerformed(evt);
-            }
-        });
->>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
         bingoBoard1.add(b1tile4);
 
         b1tile5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -724,9 +666,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-<<<<<<< HEAD
+
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
-=======
+
         Integer[] tile2 = generateRandomNumbers();
         b2tile2.setText(tile2[0].toString());
         b2tile3.setText(tile2[1].toString());
@@ -754,7 +696,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b2tile24.setText(tile2[23].toString());
         b2tile25.setText(tile2[24].toString());
         // TODO add your handling code here:
->>>>>>> 8f92966a50b5e738e1a8ec97f31ac86b85a64e30
+
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
