@@ -4,9 +4,10 @@
  */
 package project.game.bingo;
 
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.Random;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,125 +16,166 @@ import java.util.List;
  *
  * @author aslam
  */
+
 class BingoGUI {
 	
 }
 
 abstract class BingoController extends BingoGUI {
-	BingoBoard[] boards = new BingoBoard[2];
+    BingoBoard[] boards = new BingoBoard[2];
 	
-	public void startGame() {
+    public void startGame() {
 		
+    }
+    public void generateNumber() {
+	Integer[] numbers = new Integer[25];
+        for (int i = 1; i <= 25; i++) {
+            numbers[i - 1] = i;
 	}
-	public void generateNumber() {
-		Integer[] numbers = new Integer[25];
-		for (int i = 1; i <= 25; i++) {
-			numbers[i - 1] = i;
-		}
-		List<Integer> numberList = Arrays.asList(numbers);
-		Collections.shuffle(numberList);
-		numbers = numberList.toArray(new Integer[0]);
-	}
+	List<Integer> numberList = Arrays.asList(numbers);
+	Collections.shuffle(numberList);
+	numbers = numberList.toArray(new Integer[0]);
+    }
 }
 
 class BingoBoard {
-	Random random = new Random();
-	int angka = 1;
-	private String playerName;
-	protected BingoTile[][] tiles = new BingoTile[5][5];
+    Random random = new Random();
+    int angka = 1;
+    private String playerName;
+    protected BingoTile[][] tiles = new BingoTile[5][5];
 	
-	public BingoBoard() {
-		playerName = "Player " + angka++;
-		Integer[] numbers = new Integer[25];
-		for (int i = 1; i <= 25; i++) {
-			numbers[i - 1] = i;
-		}
-		List<Integer> numberList = Arrays.asList(numbers);
-		Collections.shuffle(numberList);
-		numbers = numberList.toArray(new Integer[0]);
-		int pos = 0;
+    public BingoBoard(JPanel bingoBoard) {
+        Component[] comps = bingoBoard.getComponents();
+//      JLabel[][] labels = new JLabel[5][5];
+//      for (int i = 0; i < 25; i++) {
+//          labels[i / 5][i % 5] = (JLabel) comps[i];
+//      }
+        playerName = "Player " + angka++;
+        Integer[] numbers = new Integer[25];
+	for (int i = 1; i <= 25; i++) {
+            numbers[i - 1] = i;
+        }
+	List<Integer> numberList = Arrays.asList(numbers);
+	Collections.shuffle(numberList);
+	numbers = numberList.toArray(new Integer[0]);
+	int pos = 0;
 		  
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				tiles[i][j] = new BingoTile(numbers[pos++]);
-			}
-		}
+	for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                JLabel label = (JLabel) comps[i * 5 + j];  // Ambil label dari panel
+                int num = numbers[pos++];
+		tiles[i][j] = new BingoTile(num, label);   // Kirim label ke BingoTile
+                label.setText(String.valueOf(num));        // Tampilkan angka di GUI
+            }
+        }      
+    }
 
-	}
+    public boolean checkWin() {
+	int[] rowCount = new int[5];
+        int[] colCount = new int[5];
+        int mainDiagonalCount = 0;
+        int antiDiagonalCount = 0;
+	boolean menang = false;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (tiles[i][j].getMarked() == true) {			
+                    rowCount[i]++;
+                    colCount[j]++;
 
-	public boolean checkWin() {
-		int[] rowCount = new int[5];
-		int[] colCount = new int[5];
-		int mainDiagonalCount = 0;
-		int antiDiagonalCount = 0;
-		boolean menang = false;
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				if (tiles[i][j].marked == true) {			
-					rowCount[i]++;
-					colCount[j]++;
+                    if (i == j) mainDiagonalCount++;
+                    if (i + j == 4) antiDiagonalCount++;
 
-					if (i == j) mainDiagonalCount++;
-					if (i + j == 4) antiDiagonalCount++;
-
-					if (rowCount[i] == 5 || colCount[j] == 5 || mainDiagonalCount == 5 || antiDiagonalCount == 5) {
-						menang = true;
-					}
-				}
-			}
-		}
-		tampilkanBoard();
-		if (menang) {
-			System.out.println(playerName + " menang");
-			return true;
-		} else {
-			return false;
-		}
-	}
+                    if (rowCount[i] == 5 || colCount[j] == 5 || mainDiagonalCount == 5 || antiDiagonalCount == 5) {
+                    menang = true;
+                    }
+                }
+            }
+        }   
+		
+        tampilkanBoard();
+        if (menang) {
+            System.out.println(playerName + " menang");
+            return true;
+        } else {
+            return false;
+        }
+    }
 	
-	public void markTile(int number) {
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				if (tiles[i][j].number == number && !tiles[i][j].marked) {
-					tiles[i][j].marked = true;
-				}
-			}	
-		}
-		checkWin();
-	}
+    public void markTile(int number) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (tiles[i][j].getNumber() == number && !tiles[i][j].getMarked()) {
+                    tiles[i][j].mark();
+                }
+            }	
+        }
+        checkWin();
+    }
 	
-	public void tampilkanBoard() {
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				if (tiles[i][j].marked) {
-					System.out.printf("%-5s", "X");
-				} else {
-					System.out.printf("%-5s", tiles[i][j].getNumber());
-				}
-			}	
-			System.out.println();
-		}
-	}
+    public void tampilkanBoard() {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (tiles[i][j].getMarked()) {
+                    System.out.printf("%-5s", "X");
+                } else {
+                    System.out.printf("%-5s", tiles[i][j].getNumber());
+                }
+            }	
+            System.out.println();
+        }
+    }
 	
 }
 
 class BingoTile {
-	int number;
-	boolean marked = false;
+	private int number;
+	private boolean marked = false;
+        private JLabel label = null;
 	
-	public BingoTile(int number) {
-		this.number = number;
+	public BingoTile(int number, JLabel label) {
+            this.number = number;
+            this.label = label;
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            label.setOpaque(true);
+            label.setBackground(Color.WHITE);
+            label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
 	public int getNumber() {
 		return number;
 	}
+        public boolean getMarked() {
+            return marked;
+        }
+        public JLabel getLabel() {
+            return label;
+        }
+        
+        public void setNumber(int number) {
+            this.number = number;
+        }
+        public void setMarked(boolean marked) {
+            this.marked = marked;
+        }
+        public void setLabel(JLabel label) {
+            this.label = label;
+        }
+        
+        public void mark() {
+            marked = true;
+            label.setText("X");
+            label.setBackground(Color.GREEN);
+        }
 }
 public class BingoGameFrame extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form BingoGameFrame
      */
+    
+    private BingoBoard b1;
+    private BingoBoard b2;
+    
     public BingoGameFrame() {
         initComponents();
     }
@@ -674,62 +716,62 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
        //tile board 1
-        BingoBoard b1 = new BingoBoard();
-        b1tile2.setText(Integer.toString(b1.tiles[0][0].getNumber()));
-        b1tile3.setText(Integer.toString(b1.tiles[0][1].getNumber()));
-        b1tile4.setText(Integer.toString(b1.tiles[0][2].getNumber()));
-        b1tile5.setText(Integer.toString(b1.tiles[0][3].getNumber()));
-        b1tile1.setText(Integer.toString(b1.tiles[0][4].getNumber()));
-        b1tile6.setText(Integer.toString(b1.tiles[1][0].getNumber()));
-        b1tile7.setText(Integer.toString(b1.tiles[1][1].getNumber()));
-        b1tile8.setText(Integer.toString(b1.tiles[1][2].getNumber()));
-        b1tile9.setText(Integer.toString(b1.tiles[1][3].getNumber()));
-        b1tile10.setText(Integer.toString(b1.tiles[1][4].getNumber()));
-        b1tile11.setText(Integer.toString(b1.tiles[2][0].getNumber()));
-        b1tile12.setText(Integer.toString(b1.tiles[2][1].getNumber()));
-        b1tile13.setText(Integer.toString(b1.tiles[2][2].getNumber()));
-        b1tile14.setText(Integer.toString(b1.tiles[2][3].getNumber()));
-        b1tile15.setText(Integer.toString(b1.tiles[2][4].getNumber()));
-        b1tile16.setText(Integer.toString(b1.tiles[3][0].getNumber()));
-        b1tile17.setText(Integer.toString(b1.tiles[3][1].getNumber()));
-        b1tile18.setText(Integer.toString(b1.tiles[3][2].getNumber()));
-        b1tile19.setText(Integer.toString(b1.tiles[3][3].getNumber()));
-        b1tile20.setText(Integer.toString(b1.tiles[3][4].getNumber()));
-        b1tile21.setText(Integer.toString(b1.tiles[4][0].getNumber()));
-        b1tile22.setText(Integer.toString(b1.tiles[4][1].getNumber()));
-        b1tile23.setText(Integer.toString(b1.tiles[4][2].getNumber()));
-        b1tile24.setText(Integer.toString(b1.tiles[4][3].getNumber()));
-        b1tile25.setText(Integer.toString(b1.tiles[4][4].getNumber()));
+        b1 = new BingoBoard(bingoBoard1);
+//        b1tile1.setText(Integer.toString(b1.tiles[0][0].getNumber()));
+//        b1tile2.setText(Integer.toString(b1.tiles[0][1].getNumber()));
+//        b1tile3.setText(Integer.toString(b1.tiles[0][2].getNumber()));
+//        b1tile4.setText(Integer.toString(b1.tiles[0][3].getNumber()));
+//        b1tile5.setText(Integer.toString(b1.tiles[0][4].getNumber()));
+//        b1tile6.setText(Integer.toString(b1.tiles[1][0].getNumber()));
+//        b1tile7.setText(Integer.toString(b1.tiles[1][1].getNumber()));
+//        b1tile8.setText(Integer.toString(b1.tiles[1][2].getNumber()));
+//        b1tile9.setText(Integer.toString(b1.tiles[1][3].getNumber()));
+//        b1tile10.setText(Integer.toString(b1.tiles[1][4].getNumber()));
+//        b1tile11.setText(Integer.toString(b1.tiles[2][0].getNumber()));
+//        b1tile12.setText(Integer.toString(b1.tiles[2][1].getNumber()));
+//        b1tile13.setText(Integer.toString(b1.tiles[2][2].getNumber()));
+//        b1tile14.setText(Integer.toString(b1.tiles[2][3].getNumber()));
+//        b1tile15.setText(Integer.toString(b1.tiles[2][4].getNumber()));
+//        b1tile16.setText(Integer.toString(b1.tiles[3][0].getNumber()));
+//        b1tile17.setText(Integer.toString(b1.tiles[3][1].getNumber()));
+//        b1tile18.setText(Integer.toString(b1.tiles[3][2].getNumber()));
+//        b1tile19.setText(Integer.toString(b1.tiles[3][3].getNumber()));
+//        b1tile20.setText(Integer.toString(b1.tiles[3][4].getNumber()));
+//        b1tile21.setText(Integer.toString(b1.tiles[4][0].getNumber()));
+//        b1tile22.setText(Integer.toString(b1.tiles[4][1].getNumber()));
+//        b1tile23.setText(Integer.toString(b1.tiles[4][2].getNumber()));
+//        b1tile24.setText(Integer.toString(b1.tiles[4][3].getNumber()));
+//        b1tile25.setText(Integer.toString(b1.tiles[4][4].getNumber()));
 
         
 
        //tile board 2
-        BingoBoard b2 = new BingoBoard();
-        b2tile2.setText(Integer.toString(b2.tiles[0][0].getNumber()));
-        b2tile3.setText(Integer.toString(b2.tiles[0][1].getNumber()));
-        b2tile4.setText(Integer.toString(b2.tiles[0][2].getNumber()));
-        b2tile5.setText(Integer.toString(b2.tiles[0][3].getNumber()));
-        b2tile1.setText(Integer.toString(b2.tiles[0][4].getNumber()));
-        b2tile6.setText(Integer.toString(b2.tiles[1][0].getNumber()));
-        b2tile7.setText(Integer.toString(b2.tiles[1][1].getNumber()));
-        b2tile8.setText(Integer.toString(b2.tiles[1][2].getNumber()));
-        b2tile9.setText(Integer.toString(b2.tiles[1][3].getNumber()));
-        b2tile10.setText(Integer.toString(b2.tiles[1][4].getNumber()));
-        b2tile11.setText(Integer.toString(b2.tiles[2][0].getNumber()));
-        b2tile12.setText(Integer.toString(b2.tiles[2][1].getNumber()));
-        b2tile13.setText(Integer.toString(b2.tiles[2][2].getNumber()));
-        b2tile14.setText(Integer.toString(b2.tiles[2][3].getNumber()));
-        b2tile15.setText(Integer.toString(b2.tiles[2][4].getNumber()));
-        b2tile16.setText(Integer.toString(b2.tiles[3][0].getNumber()));
-        b2tile17.setText(Integer.toString(b2.tiles[3][1].getNumber()));
-        b2tile18.setText(Integer.toString(b2.tiles[3][2].getNumber()));
-        b2tile19.setText(Integer.toString(b2.tiles[3][3].getNumber()));
-        b2tile20.setText(Integer.toString(b2.tiles[3][4].getNumber()));
-        b2tile21.setText(Integer.toString(b2.tiles[4][0].getNumber()));
-        b2tile22.setText(Integer.toString(b2.tiles[4][1].getNumber()));
-        b2tile23.setText(Integer.toString(b2.tiles[4][2].getNumber()));
-        b2tile24.setText(Integer.toString(b2.tiles[4][3].getNumber()));
-        b2tile25.setText(Integer.toString(b2.tiles[4][4].getNumber()));
+       b2 = new BingoBoard(bingoBoard2);
+//        b2tile1.setText(Integer.toString(b2.tiles[0][0].getNumber()));
+//        b2tile2.setText(Integer.toString(b2.tiles[0][1].getNumber()));
+//        b2tile3.setText(Integer.toString(b2.tiles[0][2].getNumber()));
+//        b2tile4.setText(Integer.toString(b2.tiles[0][3].getNumber()));
+//        b2tile5.setText(Integer.toString(b2.tiles[0][4].getNumber()));
+//        b2tile6.setText(Integer.toString(b2.tiles[1][0].getNumber()));
+//        b2tile7.setText(Integer.toString(b2.tiles[1][1].getNumber()));
+//        b2tile8.setText(Integer.toString(b2.tiles[1][2].getNumber()));
+//        b2tile9.setText(Integer.toString(b2.tiles[1][3].getNumber()));
+//        b2tile10.setText(Integer.toString(b2.tiles[1][4].getNumber()));
+//        b2tile11.setText(Integer.toString(b2.tiles[2][0].getNumber()));
+//        b2tile12.setText(Integer.toString(b2.tiles[2][1].getNumber()));
+//        b2tile13.setText(Integer.toString(b2.tiles[2][2].getNumber()));
+//        b2tile14.setText(Integer.toString(b2.tiles[2][3].getNumber()));
+//        b2tile15.setText(Integer.toString(b2.tiles[2][4].getNumber()));
+//        b2tile16.setText(Integer.toString(b2.tiles[3][0].getNumber()));
+//        b2tile17.setText(Integer.toString(b2.tiles[3][1].getNumber()));
+//        b2tile18.setText(Integer.toString(b2.tiles[3][2].getNumber()));
+//        b2tile19.setText(Integer.toString(b2.tiles[3][3].getNumber()));
+//        b2tile20.setText(Integer.toString(b2.tiles[3][4].getNumber()));
+//        b2tile21.setText(Integer.toString(b2.tiles[4][0].getNumber()));
+//        b2tile22.setText(Integer.toString(b2.tiles[4][1].getNumber()));
+//        b2tile23.setText(Integer.toString(b2.tiles[4][2].getNumber()));
+//        b2tile24.setText(Integer.toString(b2.tiles[4][3].getNumber()));
+//        b2tile25.setText(Integer.toString(b2.tiles[4][4].getNumber()));
         btnStart.setEnabled(false);
         // TODO add your handling code here:
 
@@ -741,9 +783,11 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     private void btnGenerateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateNumberActionPerformed
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
-        Integer [] CurrentNumber = generateRandomNumbers();
+        Integer[] CurrentNumber = generateRandomNumbers();
         CurrentNumberField.setText(CurrentNumber[0].toString());
-       
+        
+        b1.markTile(CurrentNumber[0]);
+        b2.markTile(CurrentNumber[0]);
         //if(CurrentNumber==)
 
     }//GEN-LAST:event_btnGenerateNumberActionPerformed
