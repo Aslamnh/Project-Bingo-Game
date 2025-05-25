@@ -730,6 +730,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b2tile23.setText(Integer.toString(b2.tiles[4][2].getNumber()));
         b2tile24.setText(Integer.toString(b2.tiles[4][3].getNumber()));
         b2tile25.setText(Integer.toString(b2.tiles[4][4].getNumber()));
+        btnStart.setEnabled(false);
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnStartActionPerformed
