@@ -1140,8 +1140,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
 //         b1tile1.setText(String.valueOf(TileNumber)); // tampilkan angka normal
 //     }
 //comment zienard
-<<<<<<< HEAD
-//comment razy
-=======
+
+//comment raz
 //comment zienard 2
->>>>>>> 10061c84730cc89d1d215e3a0ed47d4b7b473a61
+//comment zienard 2
+//comment zienard 3
+
