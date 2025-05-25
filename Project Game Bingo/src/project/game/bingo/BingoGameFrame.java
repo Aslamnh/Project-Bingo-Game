@@ -11,6 +11,13 @@ import java.util.Random;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.security.PKCS12Attribute;
 
 
 /**
@@ -41,7 +48,7 @@ abstract class BingoController extends BingoGUI {
 
 class Player {
 private int winCount = 0;
-private int PlayerTurn = 0;
+private int PlayerTurn = 1;
 BingoBoard boardPlayer;
 private String name;
 
@@ -69,6 +76,8 @@ private String name;
     public void setPlayerTurn(int playerTurn) {
             PlayerTurn = playerTurn;
     }
+
+
 
     
 }
@@ -161,6 +170,8 @@ class BingoBoard {
             System.out.println();
         }
     }
+    
+
 	
 }
 
@@ -214,7 +225,60 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private BingoBoard b2;
     private Player p1;
     private Player p2;
+    private int currentRound = 1;
+    private int currentTurn = 1;
     
+    public static void writeHistory(Player p1, Player p2) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a z");
+        String currentDate = ZonedDateTime.now().format(formatter);
+        
+        try (PrintWriter writer = new PrintWriter(new FileWriter("history.txt", true))) {
+        if (p1.getWinCount() > p2.getWinCount()){
+            writer.write(p1.getName() + " Won the game with " + p1.getWinCount() + " wins against " + p2.getName() + " - " + currentDate + "\n\n");
+        } else
+        if (p2.getWinCount() > p1.getWinCount()){
+            writer.write(p2.getName() + " Won the game with " + p2.getWinCount() + " wins against " + p1.getName() + " - " + currentDate + "\n\n");
+        } else
+        if (p1.getWinCount() == p2.getWinCount()) {
+            writer.write("Match between " + p1.getName() + " and " + p2.getName() + " is a tie with both having " + p1.getWinCount() + " wins - " + currentDate + "\n\n");
+        }
+        } catch (IOException e) {
+            System.err.println("Failed to write game history: " + e.getMessage() + " - " + currentDate);
+        }
+
+    }
+
+    public static void writeHistory(int round, Player p1, Player p2, Player win) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a z");
+        String currentDate = ZonedDateTime.now().format(formatter);
+        
+        try (PrintWriter writer = new PrintWriter(new FileWriter("history.txt", true))) {
+            writer.write("Round " + round + ":" + "\n");
+            writer.printf("%s wins in %d turns - %s \n", win.getName(), win.getPlayerTurn(), currentDate);
+            writer.write("Score:" + "\n");
+            writer.printf("%-9s:%9s\n\n", p1.getName(), p2.getName());
+            //writer.write(+ " - " + currentDate + "\n");
+        } catch (IOException e) {
+            System.err.println("Failed to write game history: " + e.getMessage() + " - " + currentDate);
+        }
+    }
+
+        public static void writeHistory(int round, Player p1, Player p2) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a z");
+        String currentDate = ZonedDateTime.now().format(formatter);
+        
+        try (PrintWriter writer = new PrintWriter(new FileWriter("history.txt", true))) {
+            writer.write("Round " + round + ":" + "\n");
+            writer.printf("%s tied with %s with %d turns - %s \n", p1.getName(), p2.getName(), p2.getPlayerTurn(), currentDate);
+            writer.write("Score:");
+            writer.printf("%9s:%9s\n\n", p1.getName(), p2.getName());
+            writer.printf("%9s:%9s\n\n", p1.getWinCount(), p2.getWinCount());
+            //writer.write(+ " - " + currentDate + "\n");
+        } catch (IOException e) {
+            System.err.println("Failed to write game history: " + e.getMessage() + " - " + currentDate);
+        }
+    }
+
     public BingoGameFrame() {
         initComponents();
     }
@@ -755,38 +819,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     //String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
     
-       //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
+
        //tile board 1
         b1 = new BingoBoard(bingoBoard1);
-        //p1 = new Player(b1, "Player 1");
-//        b1tile1.setText(Integer.toString(b1.tiles[0][0].getNumber()));
-//        b1tile2.setText(Integer.toString(b1.tiles[0][1].getNumber()));
-//        b1tile3.setText(Integer.toString(b1.tiles[0][2].getNumber()));
-//        b1tile4.setText(Integer.toString(b1.tiles[0][3].getNumber()));
-//        b1tile5.setText(Integer.toString(b1.tiles[0][4].getNumber()));
-//        b1tile6.setText(Integer.toString(b1.tiles[1][0].getNumber()));
-//        b1tile7.setText(Integer.toString(b1.tiles[1][1].getNumber()));
-//        b1tile8.setText(Integer.toString(b1.tiles[1][2].getNumber()));
-//        b1tile9.setText(Integer.toString(b1.tiles[1][3].getNumber()));
-//        b1tile10.setText(Integer.toString(b1.tiles[1][4].getNumber()));
-//        b1tile11.setText(Integer.toString(b1.tiles[2][0].getNumber()));
-//        b1tile12.setText(Integer.toString(b1.tiles[2][1].getNumber()));
-//        b1tile13.setText(Integer.toString(b1.tiles[2][2].getNumber()));
-//        b1tile14.setText(Integer.toString(b1.tiles[2][3].getNumber()));
-//        b1tile15.setText(Integer.toString(b1.tiles[2][4].getNumber()));
-//        b1tile16.setText(Integer.toString(b1.tiles[3][0].getNumber()));
-//        b1tile17.setText(Integer.toString(b1.tiles[3][1].getNumber()));
-//        b1tile18.setText(Integer.toString(b1.tiles[3][2].getNumber()));
-//        b1tile19.setText(Integer.toString(b1.tiles[3][3].getNumber()));
-//        b1tile20.setText(Integer.toString(b1.tiles[3][4].getNumber()));
-//        b1tile21.setText(Integer.toString(b1.tiles[4][0].getNumber()));
-//        b1tile22.setText(Integer.toString(b1.tiles[4][1].getNumber()));
-//        b1tile23.setText(Integer.toString(b1.tiles[4][2].getNumber()));
-//        b1tile24.setText(Integer.toString(b1.tiles[4][3].getNumber()));
-//        b1tile25.setText(Integer.toString(b1.tiles[4][4].getNumber()));
-
-        
-
        //tile board 2
        b2 = new BingoBoard(bingoBoard2);
     if (p1 == null || p2 == null) {
@@ -797,34 +832,10 @@ public class BingoGameFrame extends javax.swing.JFrame {
         p2.boardPlayer = b2;
     }
        //p2 = new Player(b2, "Player 2");
-        p1.setPlayerTurn(0);
-        p2.setPlayerTurn(0);
-        CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()));        
-//        b2tile1.setText(Integer.toString(b2.tiles[0][0].getNumber()));
-//        b2tile2.setText(Integer.toString(b2.tiles[0][1].getNumber()));
-//        b2tile3.setText(Integer.toString(b2.tiles[0][2].getNumber()));
-//        b2tile4.setText(Integer.toString(b2.tiles[0][3].getNumber()));
-//        b2tile5.setText(Integer.toString(b2.tiles[0][4].getNumber()));
-//        b2tile6.setText(Integer.toString(b2.tiles[1][0].getNumber()));
-//        b2tile7.setText(Integer.toString(b2.tiles[1][1].getNumber()));
-//        b2tile8.setText(Integer.toString(b2.tiles[1][2].getNumber()));
-//        b2tile9.setText(Integer.toString(b2.tiles[1][3].getNumber()));
-//        b2tile10.setText(Integer.toString(b2.tiles[1][4].getNumber()));
-//        b2tile11.setText(Integer.toString(b2.tiles[2][0].getNumber()));
-//        b2tile12.setText(Integer.toString(b2.tiles[2][1].getNumber()));
-//        b2tile13.setText(Integer.toString(b2.tiles[2][2].getNumber()));
-//        b2tile14.setText(Integer.toString(b2.tiles[2][3].getNumber()));
-//        b2tile15.setText(Integer.toString(b2.tiles[2][4].getNumber()));
-//        b2tile16.setText(Integer.toString(b2.tiles[3][0].getNumber()));
-//        b2tile17.setText(Integer.toString(b2.tiles[3][1].getNumber()));
-//        b2tile18.setText(Integer.toString(b2.tiles[3][2].getNumber()));
-//        b2tile19.setText(Integer.toString(b2.tiles[3][3].getNumber()));
-//        b2tile20.setText(Integer.toString(b2.tiles[3][4].getNumber()));
-//        b2tile21.setText(Integer.toString(b2.tiles[4][0].getNumber()));
-//        b2tile22.setText(Integer.toString(b2.tiles[4][1].getNumber()));
-//        b2tile23.setText(Integer.toString(b2.tiles[4][2].getNumber()));
-//        b2tile24.setText(Integer.toString(b2.tiles[4][3].getNumber()));
-//        b2tile25.setText(Integer.toString(b2.tiles[4][4].getNumber()));
+        p1.setPlayerTurn(1);
+        p2.setPlayerTurn(1);
+        CurrentTurnField.setText(Integer.toString(currentTurn));        
+        CurrentRoundField.setText(Integer.toString(currentRound));
         btnStart.setEnabled(false);
         btnGenerateNumber.setEnabled(true);
         // TODO add your handling code here:
@@ -833,6 +844,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // Keluar program
+        writeHistory(p1, p2);
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
@@ -840,31 +852,35 @@ public class BingoGameFrame extends javax.swing.JFrame {
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
         Integer[] CurrentNumber = generateRandomNumbers();
         CurrentNumberField.setText(CurrentNumber[0].toString());
-        CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()));
+        CurrentTurnField.setText(Integer.toString(currentTurn));
 
         
         b1.markTile(CurrentNumber[0]);
         b2.markTile(CurrentNumber[0]);
-        boolean b1Win = b1.checkWin();
-        boolean b2Win = b2.checkWin();
-        if (b1Win && b2Win) {
+        if (b1.checkWin() && b2.checkWin()) {
             JOptionPane.showMessageDialog(this, "tie!");
             btnStart.setEnabled(true);
             btnGenerateNumber.setEnabled(false);
+            writeHistory(currentRound, p1, p2, p1);
+            currentRound++;
         } else
-        if (b2Win) {
+        if (b2.checkWin()) {
             JOptionPane.showMessageDialog(this, p2.getName() + " wins!");
             btnStart.setEnabled(true);
             btnGenerateNumber.setEnabled(false);
             p2.setWinCount(p2.getWinCount() + 1);
             p2Wins.setText("Wins: " + p2.getWinCount());
+            writeHistory(currentRound, p1, p2, p2);
+            currentRound++; 
         } else
-        if (b1Win) {
+        if (b1.checkWin()) {
             JOptionPane.showMessageDialog(this, p1.getName() + " wins!");
             btnStart.setEnabled(true);
             btnGenerateNumber.setEnabled(false);
             p1.setWinCount(p1.getWinCount() + 1);
             p1Wins.setText("Wins: " + p1.getWinCount());
+            writeHistory(currentRound, p1, p2);
+            currentRound++;
 
         }
         //if(CurrentNumber==)
@@ -874,7 +890,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     private void b1tile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile1ActionPerformed
         // TODO add your handling code here:
-        b1tile1.setText("X");
+        // b1tile1.setText("X");
     }//GEN-LAST:event_b1tile1ActionPerformed
 
     private void b1tile2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile2ActionPerformed
