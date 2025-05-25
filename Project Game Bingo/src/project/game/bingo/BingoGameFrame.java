@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,6 +38,20 @@ abstract class BingoController extends BingoGUI {
 	numbers = numberList.toArray(new Integer[0]);
     }
 }
+
+class Player {
+private int winCount = 0;
+private int PlayerTurn = 0;
+BingoBoard boardPlayer;
+
+    public Player(BingoBoard boardPlayer){
+        this.boardPlayer= boardPlayer;
+    } 
+
+    
+}
+
+
 
 class BingoBoard {
     Random random = new Random();
@@ -713,7 +728,8 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-
+    String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
+    
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
        //tile board 1
         b1 = new BingoBoard(bingoBoard1);
