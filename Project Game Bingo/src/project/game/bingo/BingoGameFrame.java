@@ -44,22 +44,15 @@ abstract class BingoController extends BingoGUI {
 	Collections.shuffle(numberList);
 	numbers = numberList.toArray(new Integer[0]);
     }
-    
-    public void infoLog(){
-        
-    }
-    
 }
 
 class Player {
 private int winCount = 0;
 private int PlayerTurn = 1;
 BingoBoard boardPlayer;
-private String name;
 
-    public Player(BingoBoard boardPlayer, String name){
+    public Player(BingoBoard boardPlayer){
         this.boardPlayer= boardPlayer;
-        this.name = name;
     } 
     
     public String getName() {
@@ -326,7 +319,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     public BingoGameFrame() {
         initComponents();
-        btnGenerateNumber.setEnabled(false);
     }
 
     private Integer[] generateRandomNumbers() {
@@ -862,14 +854,11 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-
-    //String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
-    StringBuilder sb = new StringBuilder();
-        GameLogField.setText(sb.append("permainan dimulai\n").toString());
+    String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
+    
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
 
        //tile board 1
-        btnGenerateNumber.setEnabled(true);
         b1 = new BingoBoard(bingoBoard1);
        //tile board 2
        b2 = new BingoBoard(bingoBoard2);
@@ -886,7 +875,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
         CurrentTurnField.setText(Integer.toString(currentTurn));        
         CurrentRoundField.setText(Integer.toString(currentRound));
         btnStart.setEnabled(false);
-        btnGenerateNumber.setEnabled(true);
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnStartActionPerformed
@@ -1032,9 +1020,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void CurrentNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CurrentNumberFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CurrentNumberFieldActionPerformed
-   private void GameLogFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-       
-    }  
+
     /**
      * @param args the command line arguments
      */
@@ -1066,7 +1052,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BingoGameFrame().setVisible(true);
-                
             }
         });
     }
@@ -1155,3 +1140,4 @@ public class BingoGameFrame extends javax.swing.JFrame {
 //         b1tile1.setText(String.valueOf(TileNumber)); // tampilkan angka normal
 //     }
 //comment zienard
+//comment razy
