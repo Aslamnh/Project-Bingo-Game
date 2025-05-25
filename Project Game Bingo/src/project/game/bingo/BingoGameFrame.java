@@ -40,7 +40,7 @@ class BingoBoard {
 	Random random = new Random();
 	int angka = 1;
 	private String playerName;
-	private BingoTile[][] tiles = new BingoTile[5][5];
+	protected BingoTile[][] tiles = new BingoTile[5][5];
 	
 	public BingoBoard() {
 		playerName = "Player " + angka++;
@@ -674,60 +674,62 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
        //tile board 1
-Integer[] tile1 = generateRandomNumbers();
-b1tile1.setText(tile1[0].toString());
-b1tile2.setText(tile1[1].toString());
-b1tile3.setText(tile1[2].toString());
-b1tile4.setText(tile1[3].toString());
-b1tile5.setText(tile1[4].toString());
-b1tile6.setText(tile1[5].toString());
-b1tile7.setText(tile1[6].toString());
-b1tile8.setText(tile1[7].toString());
-b1tile9.setText(tile1[8].toString());
-b1tile10.setText(tile1[9].toString());
-b1tile11.setText(tile1[10].toString());
-b1tile12.setText(tile1[11].toString());
-b1tile13.setText(tile1[12].toString());
-b1tile14.setText(tile1[13].toString());
-b1tile15.setText(tile1[14].toString());
-b1tile16.setText(tile1[15].toString());
-b1tile17.setText(tile1[16].toString());
-b1tile18.setText(tile1[17].toString());
-b1tile19.setText(tile1[18].toString());
-b1tile20.setText(tile1[19].toString());
-b1tile21.setText(tile1[20].toString());
-b1tile22.setText(tile1[21].toString());
-b1tile23.setText(tile1[22].toString());
-b1tile24.setText(tile1[23].toString());
-b1tile25.setText(tile1[24].toString());
+        BingoBoard b1 = new BingoBoard();
+        b1tile2.setText(Integer.toString(b1.tiles[0][0].getNumber()));
+        b1tile3.setText(Integer.toString(b1.tiles[0][1].getNumber()));
+        b1tile4.setText(Integer.toString(b1.tiles[0][2].getNumber()));
+        b1tile5.setText(Integer.toString(b1.tiles[0][3].getNumber()));
+        b1tile1.setText(Integer.toString(b1.tiles[0][4].getNumber()));
+        b1tile6.setText(Integer.toString(b1.tiles[1][0].getNumber()));
+        b1tile7.setText(Integer.toString(b1.tiles[1][1].getNumber()));
+        b1tile8.setText(Integer.toString(b1.tiles[1][2].getNumber()));
+        b1tile9.setText(Integer.toString(b1.tiles[1][3].getNumber()));
+        b1tile10.setText(Integer.toString(b1.tiles[1][4].getNumber()));
+        b1tile11.setText(Integer.toString(b1.tiles[2][0].getNumber()));
+        b1tile12.setText(Integer.toString(b1.tiles[2][1].getNumber()));
+        b1tile13.setText(Integer.toString(b1.tiles[2][2].getNumber()));
+        b1tile14.setText(Integer.toString(b1.tiles[2][3].getNumber()));
+        b1tile15.setText(Integer.toString(b1.tiles[2][4].getNumber()));
+        b1tile16.setText(Integer.toString(b1.tiles[3][0].getNumber()));
+        b1tile17.setText(Integer.toString(b1.tiles[3][1].getNumber()));
+        b1tile18.setText(Integer.toString(b1.tiles[3][2].getNumber()));
+        b1tile19.setText(Integer.toString(b1.tiles[3][3].getNumber()));
+        b1tile20.setText(Integer.toString(b1.tiles[3][4].getNumber()));
+        b1tile21.setText(Integer.toString(b1.tiles[4][0].getNumber()));
+        b1tile22.setText(Integer.toString(b1.tiles[4][1].getNumber()));
+        b1tile23.setText(Integer.toString(b1.tiles[4][2].getNumber()));
+        b1tile24.setText(Integer.toString(b1.tiles[4][3].getNumber()));
+        b1tile25.setText(Integer.toString(b1.tiles[4][4].getNumber()));
+
+        
 
        //tile board 2
-        Integer[] tile2 = generateRandomNumbers();
-        b2tile1.setText(tile2[0].toString());
-        b2tile2.setText(tile2[1].toString());
-        b2tile3.setText(tile2[2].toString());
-        b2tile4.setText(tile2[3].toString());
-        b2tile5.setText(tile2[4].toString());
-        b2tile6.setText(tile2[5].toString());
-        b2tile7.setText(tile2[6].toString());
-        b2tile8.setText(tile2[7].toString());
-        b2tile9.setText(tile2[8].toString());
-        b2tile10.setText(tile2[9].toString());
-        b2tile11.setText(tile2[10].toString());
-        b2tile12.setText(tile2[11].toString());
-        b2tile13.setText(tile2[12].toString());
-        b2tile14.setText(tile2[13].toString());
-        b2tile15.setText(tile2[14].toString());
-        b2tile16.setText(tile2[15].toString());
-        b2tile17.setText(tile2[16].toString());
-        b2tile18.setText(tile2[17].toString());
-        b2tile19.setText(tile2[18].toString());
-        b2tile20.setText(tile2[19].toString());
-        b2tile21.setText(tile2[20].toString());
-        b2tile22.setText(tile2[21].toString());
-        b2tile23.setText(tile2[22].toString());
-        b2tile24.setText(tile2[23].toString());
-        b2tile25.setText(tile2[24].toString());
+        BingoBoard b2 = new BingoBoard();
+        b2tile2.setText(Integer.toString(b2.tiles[0][0].getNumber()));
+        b2tile3.setText(Integer.toString(b2.tiles[0][1].getNumber()));
+        b2tile4.setText(Integer.toString(b2.tiles[0][2].getNumber()));
+        b2tile5.setText(Integer.toString(b2.tiles[0][3].getNumber()));
+        b2tile1.setText(Integer.toString(b2.tiles[0][4].getNumber()));
+        b2tile6.setText(Integer.toString(b2.tiles[1][0].getNumber()));
+        b2tile7.setText(Integer.toString(b2.tiles[1][1].getNumber()));
+        b2tile8.setText(Integer.toString(b2.tiles[1][2].getNumber()));
+        b2tile9.setText(Integer.toString(b2.tiles[1][3].getNumber()));
+        b2tile10.setText(Integer.toString(b2.tiles[1][4].getNumber()));
+        b2tile11.setText(Integer.toString(b2.tiles[2][0].getNumber()));
+        b2tile12.setText(Integer.toString(b2.tiles[2][1].getNumber()));
+        b2tile13.setText(Integer.toString(b2.tiles[2][2].getNumber()));
+        b2tile14.setText(Integer.toString(b2.tiles[2][3].getNumber()));
+        b2tile15.setText(Integer.toString(b2.tiles[2][4].getNumber()));
+        b2tile16.setText(Integer.toString(b2.tiles[3][0].getNumber()));
+        b2tile17.setText(Integer.toString(b2.tiles[3][1].getNumber()));
+        b2tile18.setText(Integer.toString(b2.tiles[3][2].getNumber()));
+        b2tile19.setText(Integer.toString(b2.tiles[3][3].getNumber()));
+        b2tile20.setText(Integer.toString(b2.tiles[3][4].getNumber()));
+        b2tile21.setText(Integer.toString(b2.tiles[4][0].getNumber()));
+        b2tile22.setText(Integer.toString(b2.tiles[4][1].getNumber()));
+        b2tile23.setText(Integer.toString(b2.tiles[4][2].getNumber()));
+        b2tile24.setText(Integer.toString(b2.tiles[4][3].getNumber()));
+        b2tile25.setText(Integer.toString(b2.tiles[4][4].getNumber()));
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnStartActionPerformed
