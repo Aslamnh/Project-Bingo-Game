@@ -156,7 +156,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
@@ -192,7 +191,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
         b2tile3 = new javax.swing.JLabel();
         b2tile4 = new javax.swing.JLabel();
         b2tile5 = new javax.swing.JLabel();
-        b2tile1 = new javax.swing.JLabel();
         b2tile6 = new javax.swing.JLabel();
         b2tile7 = new javax.swing.JLabel();
         b2tile8 = new javax.swing.JLabel();
@@ -221,17 +219,17 @@ public class BingoGameFrame extends javax.swing.JFrame {
         p2Wins = new javax.swing.JTextField();
         btnStart = new javax.swing.JButton();
         gameInfoPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        currentTurn = new javax.swing.JLabel();
-        currentTurn1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        lblCurrentNumber = new javax.swing.JLabel();
+        lblCurrentTurn = new javax.swing.JLabel();
+        lblcurrentRound = new javax.swing.JLabel();
+        CurrentNumberField = new javax.swing.JTextField();
+        CurrentTurnField = new javax.swing.JTextField();
+        CurrentRoundField = new javax.swing.JTextField();
         btnExit = new javax.swing.JButton();
         gameLogPanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        GameLogField = new javax.swing.JTextArea();
+        GameLogLabel = new javax.swing.JLabel();
         btnGenerateNumber = new javax.swing.JButton();
 
         jTextArea3.setColumns(20);
@@ -243,7 +241,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
         bingoBoard1.setBackground(new java.awt.Color(255, 255, 255));
         bingoBoard1.setToolTipText("");
         bingoBoard1.setLayout(new java.awt.GridLayout(5, 5));
-
 
         b1tile1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b1tile1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -259,9 +256,6 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
         b1tile4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         b1tile4.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
-
-        
-
         bingoBoard1.add(b1tile4);
 
         b1tile5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -518,20 +512,31 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
         gameInfoPanel.setBackground(new java.awt.Color(204, 255, 255));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Current Number:");
+        lblCurrentNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCurrentNumber.setText("Current Number:");
 
-        currentTurn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        currentTurn.setText("Current Turn:");
+        lblCurrentTurn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCurrentTurn.setText("Current Turn:");
 
-        currentTurn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        currentTurn1.setText("Current Round:");
+        lblcurrentRound.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblcurrentRound.setText("Current Round:");
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentNumberField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentNumberField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        CurrentNumberField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CurrentNumberFieldActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentTurnField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentTurnField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CurrentTurnFieldActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        CurrentRoundField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout gameInfoPanelLayout = new javax.swing.GroupLayout(gameInfoPanel);
         gameInfoPanel.setLayout(gameInfoPanelLayout);
@@ -539,37 +544,37 @@ public class BingoGameFrame extends javax.swing.JFrame {
             gameInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameInfoPanelLayout.createSequentialGroup()
                 .addGroup(gameInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                    .addComponent(lblCurrentNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                     .addGroup(gameInfoPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(currentTurn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblcurrentRound, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(gameInfoPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jTextField1))
-                    .addComponent(currentTurn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CurrentNumberField))
+                    .addComponent(lblCurrentTurn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(gameInfoPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField2))
+                        .addComponent(CurrentTurnField))
                     .addGroup(gameInfoPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField3)))
+                        .addComponent(CurrentRoundField)))
                 .addContainerGap())
         );
         gameInfoPanelLayout.setVerticalGroup(
             gameInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameInfoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lblCurrentNumber)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CurrentNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(currentTurn)
+                .addComponent(lblCurrentTurn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CurrentTurnField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(currentTurn1)
+                .addComponent(lblcurrentRound)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CurrentRoundField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
@@ -580,12 +585,12 @@ public class BingoGameFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setRows(5);
-        jScrollPane4.setViewportView(jTextArea5);
+        GameLogField.setColumns(20);
+        GameLogField.setRows(5);
+        jScrollPane4.setViewportView(GameLogField);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Game Log");
+        GameLogLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        GameLogLabel.setText("Game Log");
 
         javax.swing.GroupLayout gameLogPanelLayout = new javax.swing.GroupLayout(gameLogPanel);
         gameLogPanel.setLayout(gameLogPanelLayout);
@@ -594,14 +599,14 @@ public class BingoGameFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameLogPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GameLogLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         gameLogPanelLayout.setVerticalGroup(
             gameLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameLogPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(GameLogLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
         );
@@ -668,13 +673,41 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
 
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
+       //tile board 1
+Integer[] tile1 = generateRandomNumbers();
+b1tile1.setText(tile1[0].toString());
+b1tile2.setText(tile1[1].toString());
+b1tile3.setText(tile1[2].toString());
+b1tile4.setText(tile1[3].toString());
+b1tile5.setText(tile1[4].toString());
+b1tile6.setText(tile1[5].toString());
+b1tile7.setText(tile1[6].toString());
+b1tile8.setText(tile1[7].toString());
+b1tile9.setText(tile1[8].toString());
+b1tile10.setText(tile1[9].toString());
+b1tile11.setText(tile1[10].toString());
+b1tile12.setText(tile1[11].toString());
+b1tile13.setText(tile1[12].toString());
+b1tile14.setText(tile1[13].toString());
+b1tile15.setText(tile1[14].toString());
+b1tile16.setText(tile1[15].toString());
+b1tile17.setText(tile1[16].toString());
+b1tile18.setText(tile1[17].toString());
+b1tile19.setText(tile1[18].toString());
+b1tile20.setText(tile1[19].toString());
+b1tile21.setText(tile1[20].toString());
+b1tile22.setText(tile1[21].toString());
+b1tile23.setText(tile1[22].toString());
+b1tile24.setText(tile1[23].toString());
+b1tile25.setText(tile1[24].toString());
 
+       //tile board 2
         Integer[] tile2 = generateRandomNumbers();
-        b2tile2.setText(tile2[0].toString());
-        b2tile3.setText(tile2[1].toString());
-        b2tile4.setText(tile2[2].toString());
-        b2tile5.setText(tile2[3].toString());
-        b2tile1.setText(tile2[4].toString());
+        b2tile1.setText(tile2[0].toString());
+        b2tile2.setText(tile2[1].toString());
+        b2tile3.setText(tile2[2].toString());
+        b2tile4.setText(tile2[3].toString());
+        b2tile5.setText(tile2[4].toString());
         b2tile6.setText(tile2[5].toString());
         b2tile7.setText(tile2[6].toString());
         b2tile8.setText(tile2[7].toString());
@@ -705,6 +738,11 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     private void btnGenerateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateNumberActionPerformed
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
+        Integer [] CurrentNumber = generateRandomNumbers();
+        CurrentNumberField.setText(CurrentNumber[0].toString());
+       
+        //if(CurrentNumber==)
+
     }//GEN-LAST:event_btnGenerateNumberActionPerformed
 
     private void b1tile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile1ActionPerformed
@@ -723,6 +761,14 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void b1tile4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b1tile4ActionPerformed
+
+    private void CurrentTurnFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CurrentTurnFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CurrentTurnFieldActionPerformed
+
+    private void CurrentNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CurrentNumberFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CurrentNumberFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -760,6 +806,11 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CurrentNumberField;
+    private javax.swing.JTextField CurrentRoundField;
+    private javax.swing.JTextField CurrentTurnField;
+    private javax.swing.JTextArea GameLogField;
+    private javax.swing.JLabel GameLogLabel;
     private javax.swing.JLabel b1tile1;
     private javax.swing.JLabel b1tile10;
     private javax.swing.JLabel b1tile11;
@@ -815,19 +866,14 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGenerateNumber;
     private javax.swing.JButton btnStart;
-    private javax.swing.JLabel currentTurn;
-    private javax.swing.JLabel currentTurn1;
     private javax.swing.JPanel gameInfoPanel;
     private javax.swing.JPanel gameLogPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblCurrentNumber;
+    private javax.swing.JLabel lblCurrentTurn;
+    private javax.swing.JLabel lblcurrentRound;
     private javax.swing.JTextField p1Wins;
     private javax.swing.JTextField p2Wins;
     private javax.swing.JLabel player1Name;
@@ -836,3 +882,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private javax.swing.JPanel player2Panel;
     // End of variables declaration//GEN-END:variables
 }
+//  if (TileNumber == currentGeneratedNumber) {
+//         b1tile1.setText("B"); // Atau huruf "B", atau warna, terserah
+//         
+//     } else {
+//         b1tile1.setText(String.valueOf(TileNumber)); // tampilkan angka normal
+//     }
