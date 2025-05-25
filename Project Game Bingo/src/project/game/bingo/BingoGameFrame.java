@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -52,6 +52,22 @@ private String name;
     
     public String getName() {
             return name;
+    }
+
+    public int getWinCount() {
+            return winCount;
+    }
+
+    public void setWinCount(int winCount) {
+            this.winCount = winCount;
+    }
+
+    public int getPlayerTurn() {
+            return PlayerTurn;
+    }
+
+    public void setPlayerTurn(int playerTurn) {
+            PlayerTurn = playerTurn;
     }
 
     
@@ -736,12 +752,13 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+
     //String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
     
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
        //tile board 1
         b1 = new BingoBoard(bingoBoard1);
-        p1 = new Player(b1, "Player 1");
+        //p1 = new Player(b1, "Player 1");
 //        b1tile1.setText(Integer.toString(b1.tiles[0][0].getNumber()));
 //        b1tile2.setText(Integer.toString(b1.tiles[0][1].getNumber()));
 //        b1tile3.setText(Integer.toString(b1.tiles[0][2].getNumber()));
@@ -772,7 +789,17 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
        //tile board 2
        b2 = new BingoBoard(bingoBoard2);
-       p2 = new Player(b2, "Player 2");
+    if (p1 == null || p2 == null) {
+        p1 = new Player(b1, "Player 1");
+        p2 = new Player(b2, "Player 2");
+    } else {
+        p1.boardPlayer = b1;
+        p2.boardPlayer = b2;
+    }
+       //p2 = new Player(b2, "Player 2");
+        p1.setPlayerTurn(0);
+        p2.setPlayerTurn(0);
+        CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()));        
 //        b2tile1.setText(Integer.toString(b2.tiles[0][0].getNumber()));
 //        b2tile2.setText(Integer.toString(b2.tiles[0][1].getNumber()));
 //        b2tile3.setText(Integer.toString(b2.tiles[0][2].getNumber()));
@@ -813,26 +840,36 @@ public class BingoGameFrame extends javax.swing.JFrame {
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
         Integer[] CurrentNumber = generateRandomNumbers();
         CurrentNumberField.setText(CurrentNumber[0].toString());
+        CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()));
+
         
         b1.markTile(CurrentNumber[0]);
         b2.markTile(CurrentNumber[0]);
-        if (b1.checkWin()) {
-            JOptionPane.showMessageDialog(this, p1.getName() + " wins!");
-            btnStart.setEnabled(true);
-            btnGenerateNumber.setEnabled(false);
-        } else
-        if (b2.checkWin()) {
-            JOptionPane.showMessageDialog(this, p2.getName() + " wins!");
-            btnStart.setEnabled(true);
-            btnGenerateNumber.setEnabled(false);
-        } else
-        if (b1.checkWin() && b2.checkWin()){
+        boolean b1Win = b1.checkWin();
+        boolean b2Win = b2.checkWin();
+        if (b1Win && b2Win) {
             JOptionPane.showMessageDialog(this, "tie!");
             btnStart.setEnabled(true);
             btnGenerateNumber.setEnabled(false);
+        } else
+        if (b2Win) {
+            JOptionPane.showMessageDialog(this, p2.getName() + " wins!");
+            btnStart.setEnabled(true);
+            btnGenerateNumber.setEnabled(false);
+            p2.setWinCount(p2.getWinCount() + 1);
+            p2Wins.setText("Wins: " + p2.getWinCount());
+        } else
+        if (b1Win) {
+            JOptionPane.showMessageDialog(this, p1.getName() + " wins!");
+            btnStart.setEnabled(true);
+            btnGenerateNumber.setEnabled(false);
+            p1.setWinCount(p1.getWinCount() + 1);
+            p1Wins.setText("Wins: " + p1.getWinCount());
+
         }
         //if(CurrentNumber==)
-
+        p1.setPlayerTurn(p1.getPlayerTurn() + 1);
+        p2.setPlayerTurn(p2.getPlayerTurn() + 1);
     }//GEN-LAST:event_btnGenerateNumberActionPerformed
 
     private void b1tile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile1ActionPerformed
