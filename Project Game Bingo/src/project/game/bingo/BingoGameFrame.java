@@ -137,6 +137,7 @@ class BingoBoard {
                     if (i + j == 4) antiDiagonalCount++;
 
                     if (rowCount[i] == 5 || colCount[j] == 5 || mainDiagonalCount == 5 || antiDiagonalCount == 5) {
+                        
                     menang = true;
                     }
                 }
@@ -144,13 +145,50 @@ class BingoBoard {
         }   
 		
         tampilkanBoard();
+        
         if (menang) {
             System.out.println(playerName + " menang");
+            String[] bingo = {"B", "I", "N", "G", "O"};
+            // Cek baris
+    for (int i = 0; i < 5; i++) {
+        if (rowCount[i] == 5) {
+            for (int j = 0; j < 5; j++) {
+                tiles[i][j].getLabel().setText(bingo[j]);
+            }
             return true;
-        } else {
-            return false;
         }
     }
+
+    // Cek kolom
+    for (int j = 0; j < 5; j++) {
+        if (colCount[j] == 5) {
+            for (int i = 0; i < 5; i++) {
+               tiles[i][j].getLabel().setText(bingo[i]);
+            }
+            return true;
+        }
+    }
+
+    // Cek diagonal utama
+    if (mainDiagonalCount == 5) {
+        for (int i = 0; i < 5; i++) {
+            tiles[i][i].getLabel().setText(bingo[i]);
+        }
+        return true;
+    }
+
+    // Cek diagonal sekunder
+    if (antiDiagonalCount == 5) {
+        for (int i = 0; i < 5; i++) {
+            tiles[i][4-i].getLabel().setText(bingo[i]);
+        }
+        return true;
+    }
+         
+    }
+        return false;
+    }
+
 	
     public void markTile(int number) {
         for (int i = 0; i < 5; i++) {
@@ -174,6 +212,8 @@ class BingoBoard {
             }	
             System.out.println();
         }
+               
+        
     }
     
 
@@ -861,7 +901,10 @@ public class BingoGameFrame extends javax.swing.JFrame {
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
         Integer[] CurrentNumber = generateRandomNumbers();
         CurrentNumberField.setText(CurrentNumber[0].toString());
+
         CurrentTurnField.setText(Integer.toString(currentTurn));
+
+        CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()+1));
 
         
         b1.markTile(CurrentNumber[0]);
@@ -908,7 +951,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         int[] colCount2 = new int[5];
         int mainDiagonalCount = 0;
         int antiDiagonalCount = 0;
-         int mainDiagonalCount2 = 0;
+        int mainDiagonalCount2 = 0;
         int antiDiagonalCount2 = 0;
 	boolean menang = false;
         outerLoop :
