@@ -43,10 +43,16 @@ class Player {
 private int winCount = 0;
 private int PlayerTurn = 0;
 BingoBoard boardPlayer;
+private String name;
 
-    public Player(BingoBoard boardPlayer){
+    public Player(BingoBoard boardPlayer, String name){
         this.boardPlayer= boardPlayer;
+        this.name = name;
     } 
+    
+    public String getName() {
+            return name;
+    }
 
     
 }
@@ -190,6 +196,8 @@ public class BingoGameFrame extends javax.swing.JFrame {
     
     private BingoBoard b1;
     private BingoBoard b2;
+    private Player p1;
+    private Player p2;
     
     public BingoGameFrame() {
         initComponents();
@@ -728,11 +736,12 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-    String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
+    //String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
     
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
        //tile board 1
         b1 = new BingoBoard(bingoBoard1);
+        p1 = new Player(b1, "Player 1");
 //        b1tile1.setText(Integer.toString(b1.tiles[0][0].getNumber()));
 //        b1tile2.setText(Integer.toString(b1.tiles[0][1].getNumber()));
 //        b1tile3.setText(Integer.toString(b1.tiles[0][2].getNumber()));
@@ -763,6 +772,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
        //tile board 2
        b2 = new BingoBoard(bingoBoard2);
+       p2 = new Player(b2, "Player 2");
 //        b2tile1.setText(Integer.toString(b2.tiles[0][0].getNumber()));
 //        b2tile2.setText(Integer.toString(b2.tiles[0][1].getNumber()));
 //        b2tile3.setText(Integer.toString(b2.tiles[0][2].getNumber()));
@@ -789,12 +799,14 @@ public class BingoGameFrame extends javax.swing.JFrame {
 //        b2tile24.setText(Integer.toString(b2.tiles[4][3].getNumber()));
 //        b2tile25.setText(Integer.toString(b2.tiles[4][4].getNumber()));
         btnStart.setEnabled(false);
+        btnGenerateNumber.setEnabled(true);
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // Keluar program
+        System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnGenerateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateNumberActionPerformed
@@ -804,6 +816,21 @@ public class BingoGameFrame extends javax.swing.JFrame {
         
         b1.markTile(CurrentNumber[0]);
         b2.markTile(CurrentNumber[0]);
+        if (b1.checkWin()) {
+            JOptionPane.showMessageDialog(this, p1.getName() + " wins!");
+            btnStart.setEnabled(true);
+            btnGenerateNumber.setEnabled(false);
+        } else
+        if (b2.checkWin()) {
+            JOptionPane.showMessageDialog(this, p2.getName() + " wins!");
+            btnStart.setEnabled(true);
+            btnGenerateNumber.setEnabled(false);
+        } else
+        if (b1.checkWin() && b2.checkWin()){
+            JOptionPane.showMessageDialog(this, "tie!");
+            btnStart.setEnabled(true);
+            btnGenerateNumber.setEnabled(false);
+        }
         //if(CurrentNumber==)
 
     }//GEN-LAST:event_btnGenerateNumberActionPerformed
