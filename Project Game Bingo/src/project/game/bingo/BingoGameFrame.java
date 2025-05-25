@@ -37,6 +37,11 @@ abstract class BingoController extends BingoGUI {
 	Collections.shuffle(numberList);
 	numbers = numberList.toArray(new Integer[0]);
     }
+    
+    public void infoLog(){
+        
+    }
+    
 }
 
 class Player {
@@ -217,6 +222,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
     
     public BingoGameFrame() {
         initComponents();
+        btnGenerateNumber.setEnabled(false);
     }
 
     private Integer[] generateRandomNumbers() {
@@ -754,9 +760,11 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
 
     //String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
-    
+    StringBuilder sb = new StringBuilder();
+        GameLogField.setText(sb.append("permainan dimulai\n").toString());
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
        //tile board 1
+        btnGenerateNumber.setEnabled(true);
         b1 = new BingoBoard(bingoBoard1);
         //p1 = new Player(b1, "Player 1");
 //        b1tile1.setText(Integer.toString(b1.tiles[0][0].getNumber()));
@@ -868,8 +876,75 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
         }
         //if(CurrentNumber==)
+
         p1.setPlayerTurn(p1.getPlayerTurn() + 1);
         p2.setPlayerTurn(p2.getPlayerTurn() + 1);
+
+        
+        //log
+         StringBuilder sb = new StringBuilder();
+        GameLogField.setText(sb.append("permainan dimulai\n").toString());
+        int[] rowCount = new int[5];
+        int[] colCount = new int[5];
+        int[] rowCount2 = new int[5];
+        int[] colCount2 = new int[5];
+        int mainDiagonalCount = 0;
+        int antiDiagonalCount = 0;
+         int mainDiagonalCount2 = 0;
+        int antiDiagonalCount2 = 0;
+	boolean menang = false;
+        outerLoop :
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (b1.tiles[i][j].getMarked() == true) {			
+                    rowCount[i]++;
+                    colCount[j]++;
+
+                    if (i == j) mainDiagonalCount++;
+                    if (i + j == 4) antiDiagonalCount++;
+
+                    if (rowCount[i] == 4 || colCount[j] == 4 || mainDiagonalCount == 4 || antiDiagonalCount == 4) {
+                       
+                    GameLogField.setText(sb.append("\nPlayer 1 hampir menang, tinggal satu angka lagi\n").toString());
+                    break outerLoop;
+                    }
+                
+            }
+         }
+        }
+        
+        outerLoop :
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (b2.tiles[i][j].getMarked() == true) {
+                   
+                      rowCount2[i]++;
+                      colCount2[j]++;
+
+                    if (i == j) mainDiagonalCount2++;
+                    if (i + j == 4) antiDiagonalCount2++;
+
+                    if (rowCount2[i] == 4 || colCount2[j] == 4 || mainDiagonalCount2 == 4 || antiDiagonalCount2 == 4) {
+                    GameLogField.setText(sb.append("\nPlayer 2 hampir menang, tinggal satu angka lagi\n").toString());
+                    break outerLoop;
+                    }
+            }
+         }
+        }
+        
+        if (b1.checkWin()) {
+            GameLogField.setText(sb.append("Player 1 menang\n").toString());
+        } else
+        if (b2.checkWin()) {
+          GameLogField.setText(sb.append("Player 2 menang\n").toString());
+        } else
+        if (b1.checkWin() && b2.checkWin()){
+           GameLogField.setText(sb.append("permainan seri\n").toString());
+        }
+    
+    
+
+
     }//GEN-LAST:event_btnGenerateNumberActionPerformed
 
     private void b1tile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1tile1ActionPerformed
@@ -896,7 +971,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void CurrentNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CurrentNumberFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CurrentNumberFieldActionPerformed
-
+   private void GameLogFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+       
+    }  
     /**
      * @param args the command line arguments
      */
@@ -928,6 +1005,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BingoGameFrame().setVisible(true);
+                
             }
         });
     }
