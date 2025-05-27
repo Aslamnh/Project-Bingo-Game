@@ -892,7 +892,9 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // Keluar program
-        writeHistory(p1, p2);
+        if (!(p1 == null || p2 == null)) {
+            writeHistory(p1, p2);
+        }
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
