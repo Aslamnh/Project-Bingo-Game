@@ -303,6 +303,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
             writer.printf("%s wins in %d turns - %s \n", win.getName(), win.getPlayerTurn(), currentDate);
             writer.write("Score:" + "\n");
             writer.printf("%-9s:%9s\n\n", p1.getName(), p2.getName());
+            writer.printf("%-9s:%9s\n\n", p1.getWinCount(), p2.getWinCount());
             //writer.write(+ " - " + currentDate + "\n");
         } catch (IOException e) {
             System.err.println("Failed to write game history: " + e.getMessage() + " - " + currentDate);
@@ -317,8 +318,8 @@ public class BingoGameFrame extends javax.swing.JFrame {
             writer.write("Round " + round + ":" + "\n");
             writer.printf("%s tied with %s with %d turns - %s \n", p1.getName(), p2.getName(), p2.getPlayerTurn(), currentDate);
             writer.write("Score: " + "\n");
-            writer.printf("%9s:%9s\n\n", p1.getName(), p2.getName());
-            writer.printf("%9s:%9s\n\n", p1.getWinCount(), p2.getWinCount());
+            writer.printf("%-9s:%9s\n\n", p1.getName(), p2.getName());
+            writer.printf("%-9s:%9s\n\n", p1.getWinCount(), p2.getWinCount());
             //writer.write(+ " - " + currentDate + "\n");
         } catch (IOException e) {
             System.err.println("Failed to write game history: " + e.getMessage() + " - " + currentDate);
