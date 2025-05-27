@@ -321,6 +321,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
 
     public BingoGameFrame() {
         initComponents();
+        btnGenerateNumber.setEnabled(false);
     }
 
     private Integer[] generateRandomNumbers() {
@@ -856,7 +857,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-    String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
+   // String inputRound = JOptionPane.showInputDialog("Masukkan jumlah round:");
     
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
 
@@ -877,6 +878,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         CurrentTurnField.setText(Integer.toString(currentTurn));        
         CurrentRoundField.setText(Integer.toString(currentRound));
         btnStart.setEnabled(false);
+         btnGenerateNumber.setEnabled(true);
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnStartActionPerformed
@@ -934,7 +936,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         
         //log
          StringBuilder sb = new StringBuilder();
-        GameLogField.setText(sb.append("permainan dimulai\n").toString());
+        GameLogField.setText(sb.append("Permainan dimulai!\n").toString());
         int[] rowCount = new int[5];
         int[] colCount = new int[5];
         int[] rowCount2 = new int[5];
@@ -1054,6 +1056,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BingoGameFrame().setVisible(true);
+                 
             }
         });
     }
