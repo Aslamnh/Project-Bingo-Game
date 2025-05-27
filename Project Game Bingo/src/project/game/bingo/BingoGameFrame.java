@@ -47,12 +47,14 @@ abstract class BingoController extends BingoGUI {
 }
 
 class Player {
+private String name;
 private int winCount = 0;
 private int PlayerTurn = 1;
 BingoBoard boardPlayer;
 
-    public Player(BingoBoard boardPlayer){
+    public Player(BingoBoard boardPlayer, String name){
         this.boardPlayer= boardPlayer;
+        this.name = name;
     } 
     
     public String getName() {
@@ -888,15 +890,15 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void btnGenerateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateNumberActionPerformed
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
         Integer[] CurrentNumber = generateRandomNumbers();
-        CurrentNumberField.setText(CurrentNumber[0].toString());
+        CurrentNumberField.setText(CurrentNumber[currentTurn].toString());
 
         CurrentTurnField.setText(Integer.toString(currentTurn));
 
         CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()+1));
 
         
-        b1.markTile(CurrentNumber[0]);
-        b2.markTile(CurrentNumber[0]);
+        b1.markTile(CurrentNumber[currentTurn]);
+        b2.markTile(CurrentNumber[currentTurn]);
         if (b1.checkWin() && b2.checkWin()) {
             JOptionPane.showMessageDialog(this, "tie!");
             btnStart.setEnabled(true);

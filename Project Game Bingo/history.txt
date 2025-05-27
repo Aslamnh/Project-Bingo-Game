@@ -3,3 +3,15 @@ Player 2 wins in 8 turns - 05/26/25 01:14:40 am WIB
 Score:
 Player 1 : Player 2
 
+Round 1:
+Player 2 wins in 19 turns - 05/27/25 08:53:55 am WIB 
+Score:
+Player 1 : Player 2
+
+Player 2 Won the game with 1 wins against Player 1 - 05/27/25 08:54:11 am WIB
+
+Round 1:
+Player 2 wins in 15 turns - 05/27/25 09:00:10 am WIB 
+Score:
+Player 1 : Player 2
+
