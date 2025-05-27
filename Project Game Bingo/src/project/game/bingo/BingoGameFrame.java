@@ -914,7 +914,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "tie!");
             btnStart.setEnabled(true);
             btnGenerateNumber.setEnabled(false);
-            writeHistory(currentRound, p1, p2, p1);
+            writeHistory(currentRound, p1, p2);
             currentRound++;
         } else
         if (b2.checkWin()) {
@@ -932,7 +932,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
             btnGenerateNumber.setEnabled(false);
             p1.setWinCount(p1.getWinCount() + 1);
             p1Wins.setText("Wins: " + p1.getWinCount());
-            writeHistory(currentRound, p1, p2);
+            writeHistory(currentRound, p1, p2, p1);
             currentRound++;
 
         }
