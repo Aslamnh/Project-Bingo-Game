@@ -149,6 +149,7 @@ class BingoBoard {
         if (rowCount[i] == 5) {
             for (int j = 0; j < 5; j++) {
                 tiles[i][j].getLabel().setText(bingo[j]);
+                tiles[i][j].getLabel().setBackground(Color.YELLOW);
             }
             return true;
         }
@@ -159,6 +160,7 @@ class BingoBoard {
         if (colCount[j] == 5) {
             for (int i = 0; i < 5; i++) {
                tiles[i][j].getLabel().setText(bingo[i]);
+               tiles[i][j].getLabel().setBackground(Color.YELLOW);
             }
             return true;
         }
@@ -168,6 +170,7 @@ class BingoBoard {
     if (mainDiagonalCount == 5) {
         for (int i = 0; i < 5; i++) {
             tiles[i][i].getLabel().setText(bingo[i]);
+            tiles[i][i].getLabel().setBackground(Color.YELLOW);
         }
         return true;
     }
@@ -176,6 +179,7 @@ class BingoBoard {
     if (antiDiagonalCount == 5) {
         for (int i = 0; i < 5; i++) {
             tiles[i][4-i].getLabel().setText(bingo[i]);
+            tiles[i][4-i].getLabel().setBackground(Color.YELLOW);
         }
         return true;
     }
@@ -210,6 +214,8 @@ class BingoBoard {
                
         
     }
+
+
     
 
 	
@@ -862,9 +868,10 @@ public class BingoGameFrame extends javax.swing.JFrame {
        //Membuka tab baru meminta input "Berapa round yang ingin dimainkan" 
 
        //tile board 1
-        b1 = new BingoBoard(bingoBoard1);
-       //tile board 2
-       b2 = new BingoBoard(bingoBoard2);
+       currentTurn=1;
+    b1 = new BingoBoard(bingoBoard1);
+    //tile board 2
+    b2 = new BingoBoard(bingoBoard2);
     if (p1 == null || p2 == null) {
         p1 = new Player(b1, "Player 1");
         p2 = new Player(b2, "Player 2");
@@ -892,15 +899,15 @@ public class BingoGameFrame extends javax.swing.JFrame {
     private void btnGenerateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateNumberActionPerformed
         // Memgenerate angka baru kemudian mengecek angka dari board jika sama maka di coret
         Integer[] CurrentNumber = generateRandomNumbers();
-        CurrentNumberField.setText(CurrentNumber[currentTurn].toString());
+        CurrentNumberField.setText(CurrentNumber[0].toString());
 
         CurrentTurnField.setText(Integer.toString(currentTurn));
 
-        CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()+1));
+        //CurrentTurnField.setText(Integer.toString(p1.getPlayerTurn()+1));
 
         
-        b1.markTile(CurrentNumber[currentTurn]);
-        b2.markTile(CurrentNumber[currentTurn]);
+        b1.markTile(CurrentNumber[0]);
+        b2.markTile(CurrentNumber[0]);
         if (b1.checkWin() && b2.checkWin()) {
             JOptionPane.showMessageDialog(this, "tie!");
             btnStart.setEnabled(true);
