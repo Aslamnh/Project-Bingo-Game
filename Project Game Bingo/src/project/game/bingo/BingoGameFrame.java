@@ -316,7 +316,7 @@ public class BingoGameFrame extends javax.swing.JFrame {
         try (PrintWriter writer = new PrintWriter(new FileWriter("history.txt", true))) {
             writer.write("Round " + round + ":" + "\n");
             writer.printf("%s tied with %s with %d turns - %s \n", p1.getName(), p2.getName(), p2.getPlayerTurn(), currentDate);
-            writer.write("Score:");
+            writer.write("Score: " + "\n");
             writer.printf("%9s:%9s\n\n", p1.getName(), p2.getName());
             writer.printf("%9s:%9s\n\n", p1.getWinCount(), p2.getWinCount());
             //writer.write(+ " - " + currentDate + "\n");
